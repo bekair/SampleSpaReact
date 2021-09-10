@@ -1,0 +1,9 @@
+{
+    "login.userNameLabel": "User Name",
+    "login.userNamePlaceHolder": "icterra@icterra.com.tr",
+    "login.passwordLabel": "Password",
+    "login.button": "Login",
+    "logout.button": "Logout",
+    "logo.label": "BCBSoft",
+    "copyright.label": "Copyright"
+}

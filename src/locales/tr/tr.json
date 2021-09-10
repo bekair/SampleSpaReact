@@ -1,0 +1,9 @@
+{
+    "login.userNameLabel": "Kullanıcı Adı",
+    "login.userNamePlaceHolder": "icterra@icterra.com.tr",
+    "login.passwordLabel": "Şifre",
+    "login.button": "Giriş Yap",
+    "logout.button": "Çıkış Yap",
+    "logo.label": "BCBSoft",
+    "copyright.label": "Telif Hakkı"
+}
