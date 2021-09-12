@@ -46,8 +46,8 @@ export const getLanguageComboBoxOptions = (locale) => {
     }
     else {
         return [
-            { value: "tr", name: "Turkish" },
-            { value: "en-US", name: "English" }
+            { value: "en-US", name: "English" },
+            { value: "tr", name: "Turkish" }
         ];
     }
 }

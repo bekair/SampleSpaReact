@@ -1,13 +1,15 @@
-import { Grid, makeStyles, Box } from "@material-ui/core";
+import { Grid, makeStyles, Box, useTheme } from "@material-ui/core";
 import { useState } from "react";
 import LabelFC from "../components/LabelFC";
 import TextBoxFC from "../components/TextBoxFC";
 import ButtonFC from "../components/ButtonFC";
+import ComboBoxFC from "../components/ComboBoxFC";
 import logo from '../assets/images/react-icon.png';
-import { LanguageFormatter, messageFormatter } from "../locales/LanguageHelpers";
+import { getLangJson, getLanguageComboBoxOptions, getLocale, LanguageFormatter, messageFormatter } from "../locales/LanguageHelpers";
 import { useIntl } from 'react-intl';
 import { useDispatch, useSelector } from "react-redux";
 import { loginAction, loginStates, setEmail, setName } from "../redux/slices/login";
+import { localizationStates, setLanguageComboBoxOptions, setLanguageComboBoxSelectedItem, setLocale, setLocaleFile } from "../redux/slices/localization";
 
 const useStyles = makeStyles(() => ({
     container: {
@@ -27,11 +29,16 @@ const useStyles = makeStyles(() => ({
 
 const Login = (props) => {
     const intl = useIntl();
+    const theme = useTheme();
     const dispatch = useDispatch();
     const {
         name,
         email
     } = useSelector(loginStates);
+    const { 
+        languageComboBoxOptions, 
+        languageComboBoxSelectedItem 
+    } = useSelector(localizationStates);
     const [password, setPassword] = useState('');
     const classes = useStyles();
 
@@ -53,6 +60,22 @@ const Login = (props) => {
         props.onHandleLogin();
     }
 
+    const handleLanguageComboBoxChange = (e) => {
+        const selectedName = languageComboBoxOptions.filter(
+            (x) => x.value === e.target.value
+        )[0].name;
+        const selectedValue = e.target.value;
+
+        dispatch(setLocale(getLocale(selectedValue)));
+        dispatch(setLocaleFile(getLangJson(selectedValue)));
+
+        dispatch(setLanguageComboBoxOptions(getLanguageComboBoxOptions(selectedValue)));
+        dispatch(setLanguageComboBoxSelectedItem({
+            value: selectedValue,
+            name: selectedName,
+        }));
+    }
+
     return (
         <Grid
             container
@@ -60,6 +83,28 @@ const Login = (props) => {
             alignContent='center'
             className={classes.gridContainer}
         >
+            <Grid
+                container
+                justify='center'
+                alignContent='center' 
+                xs={12}
+                className={classes.gridItem}
+            >
+                <Box m={1}>
+                    <Grid item>
+                        <ComboBoxFC
+                            id="language-select"
+                            noborderinput
+                            labelcolor={theme.palette.background.paper}
+                            onChange={handleLanguageComboBoxChange}
+                            value={languageComboBoxSelectedItem.value}
+                            options={languageComboBoxOptions}
+                            fullWidth
+                            nodefaultoption
+                        />
+                    </Grid>
+                </Box>
+            </Grid>
             <Grid item xs={12} className={classes.gridItem}>
                 <Box m={1}>
                     <Grid item>

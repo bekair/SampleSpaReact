@@ -9,6 +9,7 @@ const TextBoxFC = (props) => {
             placeholder={props.placeholder}
             value={props.value}
             onChange={props.onChange}
+            onKeyDown={props.onKeyDown}
             id="outlined-basic"
             variant="outlined"
             {...other}

@@ -4,6 +4,7 @@ import Dialog from '@material-ui/core/Dialog';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import MuiDialogContent from '@material-ui/core/DialogContent';
 import Typography from '@material-ui/core/Typography';
+import { Grid } from '@material-ui/core';
 import IconButtonFC from './IconButtonFC';
 import IconFC from "./IconFC";
 import CloseIcon from '@iconify/icons-uil/multiply';
@@ -28,7 +29,7 @@ const DialogTitle = ((props) => {
 
     return (
         <MuiDialogTitle disableTypography className={classes.root} {...other}>
-            <Typography variant="h6">{children}</Typography>
+            <Typography variant="subtitle2">{children}</Typography>
             {onClose ? (
                 <IconButtonFC
                     className={classes.button}
@@ -68,8 +69,22 @@ const PopupFC = (props) => {
                 aria-labelledby="customized-dialog-title"
                 open={props.open}
                 {...other}>
-                <DialogTitle id="customized-dialog-title" onClose={props.onClose}>
-                    {props.title}
+                <DialogTitle
+                    id="customized-dialog-title"
+                    onClose={props.onClose}
+                >
+                    <Grid container>
+                        <Grid item xs={4}>
+                            {props.title}
+                        </Grid>
+                        <Grid item xs={3} />
+                        <Grid item xs={3}>
+                            {props.headercontent ?
+                                props.headercontent
+                                : null
+                            }
+                        </Grid>
+                    </Grid>
                 </DialogTitle>
                 <DialogContent>
                     <Typography gutterBottom>

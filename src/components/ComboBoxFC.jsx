@@ -19,7 +19,8 @@ const useStyles = makeStyles((theme) => ({
     },
     icon: {
         fill: props => props.labelcolor ?? theme.palette.grey.gray1,
-    }
+    },
+    menu: props => props.styleselect ?? null
 }));
 
 const ComboBoxFC = (props) => {
@@ -29,10 +30,11 @@ const ComboBoxFC = (props) => {
     return (
         <FormControl variant="outlined" {...other}>
             <Select
+                style={props.styleselect}
                 input={
                     <OutlinedInput
                         fullWidth={true}
-                        classes={{ 
+                        classes={{
                             notchedOutline: classes.notchedOutline
                         }}
                     />
@@ -59,12 +61,20 @@ const ComboBoxFC = (props) => {
                 }}
             >
                 {props.nodefaultoption ? null : (
-                    <MenuItem disabled key={0} value={props.defaultoption.value}>
+                    <MenuItem
+                        key={0}
+                        className={classes.menu}
+                        disabled
+                        value={props.defaultoption.value}>
                         {props.defaultoption.name}
                     </MenuItem>
                 )}
                 {props.options.map(item => (
-                    <MenuItem key={item.value} value={item.value}>
+                    <MenuItem
+                        key={item.value}
+                        className={classes.menu}
+                        value={item.value}
+                    >
                         {item.name}
                     </MenuItem>
                 ))}

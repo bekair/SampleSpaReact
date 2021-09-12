@@ -65,7 +65,7 @@ const NavbarFC = (props) => {
     const intl = useIntl();
     const dispatch = useDispatch();
     const history = useHistory();
-    const { token, name } = useSelector(loginStates);
+    const { token, name, email } = useSelector(loginStates);
     const { languageComboBoxOptions, languageComboBoxSelectedItem } = useSelector(localizationStates);
     const [openLoginModal, setOpenLoginModal] = useState(false);
     const [anchorEl, setAnchorEl] = useState(null);
@@ -143,6 +143,7 @@ const NavbarFC = (props) => {
         return (
             <ComboBoxFC
                 id="language-select"
+                styleselect={{ fontSize: '12px' }}
                 noborderinput
                 labelcolor={theme.palette.background.paper}
                 onChange={handleLanguageComboBoxChange}
@@ -159,7 +160,7 @@ const NavbarFC = (props) => {
             anchorEl={anchorEl}
             keepMounted
             anchorOrigin={{
-                vertical: 'bottom',
+                vertical: 'center',
                 horizontal: 'right',
             }}
             transformOrigin={{
@@ -169,6 +170,14 @@ const NavbarFC = (props) => {
             open={isMenuOpen}
             onClose={handleProfileClose}
         >
+            <MenuItem>
+                <LabelFC
+                    id="email-label-mobile"
+                    labelcolor={theme.palette.grey.gray1}
+                    label={email}
+                    style={{ fontSize: '12px' }}
+                />
+            </MenuItem>
             <MenuItem onClick={handleLogout}>
                 <LanguageFormatter id="logout.button" />
             </MenuItem>
@@ -266,6 +275,18 @@ const NavbarFC = (props) => {
         <div>
             <AppBar position="fixed" className={classes.appBar}>
                 <PopupFC
+                    headercontent={
+                        <ComboBoxFC
+                            id="language-select"
+                            styleselect={{ fontSize: '12px' }}
+                            noborderinput
+                            onChange={handleLanguageComboBoxChange}
+                            value={languageComboBoxSelectedItem.value}
+                            options={languageComboBoxOptions}
+                            fullWidth
+                            nodefaultoption
+                        />
+                    }
                     title={intl.formatMessage({
                         ...messageFormatter("login.button"),
                     })}
