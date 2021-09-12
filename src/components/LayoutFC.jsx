@@ -4,7 +4,6 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import { useState } from 'react';
 import NavbarFC from './NavbarFC';
 import Routes from '../routes';
 import { Link } from '@material-ui/core';
@@ -17,9 +16,9 @@ const Copyright = () => {
 
 	return (
 		<Typography variant="body2" color="textSecondary" align="center">
-			{`Copyright ${intl.formatMessage({
+			{`${intl.formatMessage({
 				...messageFormatter("copyright.label"),
-			})} ©`}
+			})} © `}
 			{
 				<Link href={copyrightLink}>Bekir Can Baykal</Link>
 			}

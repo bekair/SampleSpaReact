@@ -4,9 +4,10 @@ import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme) => ({
     main: {
+        cursor: 'pointer',
         width: props => props.width,
         height: props => props.height,
-        minWidth: "28px",
+        minWidth: 'max-content',
         borderRadius: 4
     },
     buttonLabel: {
@@ -21,7 +22,12 @@ const ButtonFC = (props) => {
     const classes = useStyles(props);
     const { ...other } = props;
 
-    return <Button classes={{ root: classes.main, label: classes.buttonLabel }} {...other} />
+    return (
+        <Button
+            classes={{ root: classes.main, label: classes.buttonLabel }}
+            {...other}
+        />
+    );
 };
 
 export default ButtonFC;

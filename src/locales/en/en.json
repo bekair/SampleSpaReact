@@ -1,9 +1,15 @@
 {
-    "login.userNameLabel": "User Name",
-    "login.userNamePlaceHolder": "icterra@icterra.com.tr",
-    "login.passwordLabel": "Password",
+    "login.email.label": "Email",
+    "login.email.placeholder": "bcbsoftware@hotmail.com",
+    "login.password.label": "Password",
+    "login.name.label": "Name",
+    "login.popup.title": "Login",
     "login.button": "Login",
     "logout.button": "Logout",
-    "logo.label": "BCBSoft",
-    "copyright.label": "Copyright"
+    "logo.label": "AwareMe",
+    "copyright.label": "Copyright",
+    "pages.home": "Home",
+    "pages.contactUs": "Contact Us",
+    "language.combobox.option.tr": "Turkish",
+    "language.combobox.option.en": "English"
 }

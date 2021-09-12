@@ -2,7 +2,6 @@ import Turkish from "./tr/tr.json";
 import English from "./en/en.json";
 import { FormattedMessage } from "react-intl";
 
-
 export const getLangJson = (locale) => {
     if (locale === "tr")
         return Turkish;
@@ -17,9 +16,7 @@ export const getLangJson = (locale) => {
 export const getLocale = (locale) => {
     if (locale === "tr")
         return locale;
-    else if (locale === "en-US") {
-        return locale
-    } else {
+    else {
         return "en-US";
     }
 }
@@ -35,6 +32,27 @@ export const LanguageFormatter = (props) => {
         />
     )
 }
+
 export const messageFormatter = (id) => {
     return { id: id, defaultMessage: getLangJson("en-US")[id] };
+}
+
+export const getLanguageComboBoxOptions = (locale) => {
+    if (locale === "tr") {
+        return [
+            { value: "tr", name: "Türkçe" },
+            { value: "en-US", name: "İngilizce" }
+        ];
+    }
+    else {
+        return [
+            { value: "tr", name: "Turkish" },
+            { value: "en-US", name: "English" }
+        ];
+    }
+}
+
+export const getLanguageSelectedItem = (locale) => {
+    const languageOptions = getLanguageComboBoxOptions(locale);
+    return languageOptions.filter(option => option.value === locale)[0];
 }

@@ -3,8 +3,9 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
     root: {
+        cursor: 'pointer',
         fontFamily: props => props.bold ? 'PoppinsSemiBold !important' : 'PoppinsRegular !important',
-        color: props => props.color ?? theme.palette.grey.gray1,
+        color: props => props.labelcolor ?? theme.palette.grey.gray1,
     }
 }));
 

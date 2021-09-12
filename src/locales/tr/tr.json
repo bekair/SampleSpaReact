@@ -1,9 +1,15 @@
 {
-    "login.userNameLabel": "Kullanıcı Adı",
-    "login.userNamePlaceHolder": "icterra@icterra.com.tr",
-    "login.passwordLabel": "Şifre",
+    "login.email.label": "Eposta",
+    "login.email.placeholder": "bcbyazilim@hotmail.com",
+    "login.password.label": "Şifre",
+    "login.name.label": "Ad",
+    "login.popup.title": "Giriş Yap",
     "login.button": "Giriş Yap",
     "logout.button": "Çıkış Yap",
-    "logo.label": "BCBSoft",
-    "copyright.label": "Telif Hakkı"
+    "logo.label": "AwareMe",
+    "copyright.label": "Telif Hakkı",
+    "pages.home": "Anasayfa",
+    "pages.contactUs": "İletişim",
+    "language.combobox.option.en": "English",
+    "language.combobox.option.tr": "Türkçe"
 }

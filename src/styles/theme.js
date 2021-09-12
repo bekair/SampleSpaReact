@@ -30,6 +30,8 @@ const theme = createTheme({
             dark: '#292929',
             gray1: '#595959',
             gray2: '#C2C2C2',
+            gray3: '#D6D6D6',
+            gray4: '#F0F0F0',
             light: '#0355F9',
             disabled: '#F3F6F9'
         },
@@ -60,9 +62,12 @@ const theme = createTheme({
 
 theme.overrides = {
     MuiSelect: {
+        outlined: {
+            border: 'none'
+        },
         select: {
             '&:focus': {
-                backgroundColor: theme.palette.background.paper
+                backgroundColor: "transparent"
             }
         }
     },
@@ -104,6 +109,11 @@ theme.overrides = {
             '&:hover': {
                 backgroundColor: props => props.hoverbackgroundcolor ?? theme.palette.primary.dark,
             }
+        }
+    },
+    MuiPaper: {
+        elevation1: {
+            boxShadow: '0px 0px 8px 0px rgba(0,0,0,0.67)'
         }
     }
 };
