@@ -2,9 +2,9 @@ import {
     createSlice,
     createSelector
 } from "@reduxjs/toolkit";
+import { getLanguageComboBoxOptions } from "../../helpers/ProjectHelper";
 import {
-    getLangJson,
-    getLanguageComboBoxOptions, 
+    getLangJson, 
     getLanguageSelectedItem, 
     getLocale
 } from "../../locales/LanguageHelpers";

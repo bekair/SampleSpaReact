@@ -3,6 +3,9 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import { makeStyles } from '@material-ui/core/styles';
 import { OutlinedInput } from '@material-ui/core';
+import clsx from 'clsx';
+import { messageFormatter } from '../locales/LanguageHelpers';
+import { useIntl } from 'react-intl';
 
 const useStyles = makeStyles((theme) => ({
     select: {
@@ -15,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     },
     root: {
         color: props => props.labelcolor ?? theme.palette.grey.gray1,
-        width: 'fit-content'
+        width: '100%'
     },
     icon: {
         fill: props => props.labelcolor ?? theme.palette.grey.gray1,
@@ -25,12 +28,19 @@ const useStyles = makeStyles((theme) => ({
 
 const ComboBoxFC = (props) => {
     const classes = useStyles(props);
+    const intl = useIntl();
+    const defaultOption = {
+        value: 0,
+        name: intl.formatMessage({
+            ...messageFormatter("default.option.combobox.name"),
+        })
+    };
     const { ...other } = props;
 
     return (
         <FormControl variant="outlined" {...other}>
             <Select
-                style={props.styleselect}
+                className={clsx(classes.select, classes.root, classes.menu)}
                 input={
                     <OutlinedInput
                         fullWidth={true}
@@ -46,7 +56,6 @@ const ComboBoxFC = (props) => {
                     }
                 }}
                 labelId={props.labelId}
-                className={`${classes.select} ${classes.root}`}
                 onChange={props.onChange}
                 value={props.value}
                 MenuProps={{
@@ -65,8 +74,8 @@ const ComboBoxFC = (props) => {
                         key={0}
                         className={classes.menu}
                         disabled
-                        value={props.defaultoption.value}>
-                        {props.defaultoption.name}
+                        value={props.defaultoption?.value ?? defaultOption.value}>
+                        {props.defaultoption?.name ?? defaultOption.name}
                     </MenuItem>
                 )}
                 {props.options.map(item => (
@@ -85,7 +94,6 @@ const ComboBoxFC = (props) => {
 
 ComboBoxFC.defaultProps = {
     options: [],
-    defaultoption: { value: 0, name: "Seçiniz" },
     value: 0
 }
 

@@ -12,6 +12,11 @@
     "pages.home.dummy.text": "Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir hurufat numune kitabı oluşturmak üzere bir yazı galerisini alarak karıştırdığı 1500'lerden beri endüstri standardı sahte metinler olarak kullanılmıştır. Beşyüz yıl boyunca varlığını sürdürmekle kalmamış, aynı zamanda pek değişmeden elektronik dizgiye de sıçramıştır. 1960'larda Lorem Ipsum pasajları da içeren Letraset yapraklarının yayınlanması ile ve yakın zamanda Aldus PageMaker gibi Lorem Ipsum sürümleri içeren masaüstü yayıncılık yazılımları ile popüler olmuştur.",
     "pages.contactUs": "Bize Ulaşın",
     "pages.contactUs.phone.label": "Telefon No",
+    "pages.contactUs.country.label": "Ülke",
+    "pages.contactUs.comments.label": "Yorumlar",
+    "pages.contactUs.comments.placeholder": "Bize yazın...",
     "language.combobox.option.en": "English",
-    "language.combobox.option.tr": "Türkçe"
+    "language.combobox.option.tr": "Türkçe",
+    "default.option.combobox.name": "Seçiniz",
+    "send.button": "Gönder"
 }

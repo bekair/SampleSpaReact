@@ -5,11 +5,12 @@ import TextBoxFC from "../components/TextBoxFC";
 import ButtonFC from "../components/ButtonFC";
 import ComboBoxFC from "../components/ComboBoxFC";
 import logo from '../assets/images/react-icon.png';
-import { getLangJson, getLanguageComboBoxOptions, getLocale, LanguageFormatter, messageFormatter } from "../locales/LanguageHelpers";
+import { getLangJson, getLocale, LanguageFormatter, messageFormatter } from "../locales/LanguageHelpers";
 import { useIntl } from 'react-intl';
 import { useDispatch, useSelector } from "react-redux";
 import { loginAction, loginStates, setEmail, setName } from "../redux/slices/login";
 import { localizationStates, setLanguageComboBoxOptions, setLanguageComboBoxSelectedItem, setLocale, setLocaleFile } from "../redux/slices/localization";
+import { getLanguageComboBoxOptions } from "../helpers/ProjectHelper";
 
 const useStyles = makeStyles(() => ({
     container: {

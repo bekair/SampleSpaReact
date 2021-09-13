@@ -77,8 +77,8 @@ const PopupFC = (props) => {
                         <Grid item xs={4}>
                             {props.title}
                         </Grid>
-                        <Grid item xs={3} />
-                        <Grid item xs={3}>
+                        <Grid item xs={2} />
+                        <Grid item xs={4}>
                             {props.headercontent ?
                                 props.headercontent
                                 : null

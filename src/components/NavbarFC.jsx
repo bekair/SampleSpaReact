@@ -9,7 +9,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import { useState, React } from "react";
 import Login from '../pages/Login';
 import ButtonFC from "./ButtonFC";
-import { getLangJson, getLanguageComboBoxOptions, getLocale, LanguageFormatter, messageFormatter } from "../locales/LanguageHelpers";
+import { getLangJson, getLocale, LanguageFormatter, messageFormatter } from "../locales/LanguageHelpers";
 import { useIntl } from "react-intl";
 import IconButtonFC from "./IconButtonFC";
 import HomeIcon from '@iconify/icons-uil/home-alt';
@@ -28,6 +28,7 @@ import {
     setLocale,
     setLocaleFile
 } from "../redux/slices/localization";
+import { getLanguageComboBoxOptions } from "../helpers/ProjectHelper";
 
 const useStyles = makeStyles(theme => ({
     logoDiv: {
@@ -283,7 +284,6 @@ const NavbarFC = (props) => {
                             onChange={handleLanguageComboBoxChange}
                             value={languageComboBoxSelectedItem.value}
                             options={languageComboBoxOptions}
-                            fullWidth
                             nodefaultoption
                         />
                     }
