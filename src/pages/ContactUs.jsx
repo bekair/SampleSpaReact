@@ -1,5 +1,5 @@
 import { Box, Grid, makeStyles, Typography, useTheme } from "@material-ui/core";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import LabelFC from "../components/LabelFC";
 import TextBoxFC from "../components/TextBoxFC";
 import ValidationMessageFC from "../components/ValidationMessageFC";
@@ -9,7 +9,7 @@ import {
     LanguageFormatter,
     messageFormatter
 } from "../locales/LanguageHelpers";
-import { loginStates, setName } from "../redux/slices/login";
+import { loginStates } from "../redux/slices/login";
 import { useEffect, useState } from "react";
 import { getCountryComboBoxOptions } from "../helpers/ProjectHelper";
 import { localizationStates } from "../redux/slices/localization";
@@ -34,7 +34,6 @@ const useStyles = makeStyles((theme) => ({
 const ContactUs = () => {
     const classes = useStyles();
     const theme = useTheme();
-    const dispatch = useDispatch();
     const intl = useIntl();
     const { locale } = useSelector(localizationStates);
     const [countryComboBoxOptions, setCountryComboBoxOptions] = useState();
@@ -82,7 +81,8 @@ const ContactUs = () => {
         setComments(e.currentTarget.value);
     }
 
-    const handleSend = () => {
+    const handleSend = (e) => {
+        e.preventDefault();
         const sentJson = {
             "name": nameField,
             "email": emailField,
@@ -110,7 +110,7 @@ const ContactUs = () => {
             validationSchema={validationSchema}
         >
             {({ handleSubmit, handleBlur, values, errors, touched }) => (
-                <Form onSubmit={handleSend} action="javascript:void(0);">
+                <Form onSubmit={handleSend}>
                     <Grid
                         container
                         justify='center'
