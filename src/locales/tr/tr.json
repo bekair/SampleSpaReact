@@ -18,5 +18,6 @@
     "language.combobox.option.en": "English",
     "language.combobox.option.tr": "Türkçe",
     "default.option.combobox.name": "Seçiniz",
-    "send.button": "Gönder"
+    "send.button": "Gönder",
+    "email.validation": "Lütfen uygun formatta bir email adresi giriniz"
 }

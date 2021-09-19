@@ -23,7 +23,7 @@ const TextAreaFC = (props) => {
 		<TextareaAutosize
 			className={classes.root}
 			cols={props.cols}
-			rowsMin={props.rowsMin}
+			minRows={props.rowsMin}
 			placeholder={props.placeholder}
 			defaultValue={props.defaultValue}
 			onChange={props.onChange}

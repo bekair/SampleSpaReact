@@ -18,5 +18,6 @@
     "language.combobox.option.tr": "Turkish",
     "language.combobox.option.en": "English",
     "default.option.combobox.name":"Choose",
-    "send.button": "Send"
+    "send.button": "Send",
+    "email.validation": "Please enter a valid email address"
 }
