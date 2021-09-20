@@ -7,16 +7,16 @@ import theme from './styles/theme';
 import store from './redux/store';
 import { ThemeProvider } from '@material-ui/core/styles';
 import App from './App';
-import { BrowserRouter } from 'react-router-dom';
+import { MemoryRouter } from 'react-router-dom';
 
 ReactDOM.render(
 	<Provider store={store}>
 		<IntlReduxProvider>
-			<BrowserRouter>
+			<MemoryRouter>
 				<ThemeProvider theme={theme}>
 					<App />
 				</ThemeProvider>
-			</BrowserRouter>
+			</MemoryRouter>
 		</IntlReduxProvider>
 	</Provider>,
 	document.getElementById('root')
