@@ -2,6 +2,8 @@ import Turkish from "./tr/tr.json";
 import English from "./en/en.json";
 import { FormattedMessage } from "react-intl";
 import { getLanguageComboBoxOptions } from "../helpers/ProjectHelper";
+import { localizationStates } from "../redux/slices/localization";
+import { useSelector } from "react-redux";
 
 export const getLangJson = (locale) => {
     if (locale === "tr")
@@ -24,11 +26,12 @@ export const getLocale = (locale) => {
 
 export const LanguageFormatter = (props) => {
     const { id, ...rest } = props;
+    const { locale } = useSelector(localizationStates);
 
     return (
         <FormattedMessage
             id={id}
-            defaultMessage={getLangJson("tr")[id]}
+            defaultMessage={getLangJson(locale)[id]}
             {...rest}
         />
     )

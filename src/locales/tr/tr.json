@@ -19,5 +19,10 @@
     "language.combobox.option.tr": "Türkçe",
     "default.option.combobox.name": "Seçiniz",
     "send.button": "Gönder",
-    "email.validation": "Lütfen uygun formatta bir email adresi giriniz"
+    "message.success": "Kayıt işlemi başarıyla gerçekleştirildi",
+    "validation.invalid.email": "Lütfen uygun formatta bir email adresi giriniz",
+    "validation.required.email": "Lütfen bir email adresi giriniz",
+    "validation.invalid.phoneNumber": "Lütfen uygun formatta bir telefon numarası giriniz",
+    "validation.required.phoneNumber": "Lütfen bir telefon numarası giriniz",
+    "validation.required.country": "Lütfen bir ülke seçiniz"
 }

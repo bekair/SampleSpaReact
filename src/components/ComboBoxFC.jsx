@@ -14,7 +14,9 @@ const useStyles = makeStyles((theme) => ({
         radius: "4px"
     },
     notchedOutline: {
-        border: props => props.noborderinput ? 'none' : `1px solid ${theme.palette.grey.gray1}`
+        border: props => props.noborderinput
+            ? 'none'
+            : (props.border ?? `1px solid ${theme.palette.grey.gray1}`)
     },
     root: {
         color: props => props.labelcolor ?? theme.palette.grey.gray1,
@@ -43,9 +45,10 @@ const ComboBoxFC = (props) => {
                 className={clsx(classes.select, classes.root, classes.menu)}
                 input={
                     <OutlinedInput
+                        onBlur={props.onBlur}
                         fullWidth={true}
                         classes={{
-                            notchedOutline: classes.notchedOutline
+                            notchedOutline: classes.notchedOutline,
                         }}
                     />
                 }

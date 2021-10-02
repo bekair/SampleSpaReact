@@ -19,5 +19,10 @@
     "language.combobox.option.en": "English",
     "default.option.combobox.name":"Choose",
     "send.button": "Send",
-    "email.validation": "Please enter a valid email address"
+    "message.success": "The process has been successfully made",
+    "validation.invalid.email": "Please enter a valid email address",
+    "validation.required.email": "Please enter an email address",
+    "validation.invalid.phoneNumber": "Please enter a valid phone number",
+    "validation.required.phoneNumber": "Please enter a phone number",
+    "validation.required.country": "Please select a country"
 }

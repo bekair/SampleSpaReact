@@ -19,7 +19,9 @@ import SendIcon from '@iconify/icons-uil/fast-mail-alt';
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import AutoCompleteFC from "../components/AutoCompleteFC";
-
+import { useDispatch } from "react-redux";
+import { openSnackbar } from "../redux/slices/snackbar";
+import MessageType from "../constants/MessageType";
 
 const useStyles = makeStyles((theme) => ({
     gridItem: {
@@ -35,10 +37,11 @@ const ContactUs = () => {
     const classes = useStyles();
     const theme = useTheme();
     const intl = useIntl();
+    const dispatch = useDispatch();
     const { locale } = useSelector(localizationStates);
     const [countryComboBoxOptions, setCountryComboBoxOptions] = useState();
-    const [countryComboBoxSelectedItem, setCountryComboBoxSelectedItem] = useState(null);
-    const [phoneNumber, setPhoneNumber] = useState(null);
+    const [countryComboBoxSelectedItem] = useState(null);
+    const [phoneNumber] = useState(null);
     const [comments, setComments] = useState('');
     const { name, email } = useSelector(loginStates);
     const [emailField, setEmailField] = useState(email);
@@ -50,48 +53,55 @@ const ContactUs = () => {
     }
 
     const validationSchema = Yup.object({
-        email: Yup.string().email("Please enter a valid email address")
-            .required("Please enter an email address")
-            .typeError('Please enter a valid email address'),
+        email: Yup.string().email(intl.formatMessage(
+            { ...messageFormatter("validation.invalid.email") }
+        ))
+            .required(intl.formatMessage(
+                { ...messageFormatter("validation.required.email") }
+            ))
+            .typeError(intl.formatMessage(
+                { ...messageFormatter("validation.invalid.email") }
+            )),
         phoneNumber: Yup.number()
-            .required("Please enter a phone number")
-            .typeError("Please enter a valid phone number"),
+            .required(intl.formatMessage(
+                { ...messageFormatter("validation.required.phoneNumber") }
+            ))
+            .typeError(intl.formatMessage(
+                { ...messageFormatter("validation.invalid.phoneNumber") }
+            )),
         countryComboBoxSelectedItem: Yup.string()
             .nullable()
-            .oneOf(getCountryComboBoxOptions(locale).map(x => x.value), "Please select a country")
+            .oneOf(getCountryComboBoxOptions(locale).map(x => x.value),
+                intl.formatMessage(
+                    { ...messageFormatter("validation.required.country") }
+                )
+            )
     });
 
     const handleNameChange = (e) => {
         setNameField(e.currentTarget.value);
     }
 
-    const handleEmailChange = (e) => {
-        setEmailField(e.currentTarget.value);
-    }
-
-    const handlePhoneNumberChange = (e) => {
-        setPhoneNumber(e.currentTarget.value);
-    }
-
-    const handleCountryComboBoxChange = (e, selected) => {
-        setCountryComboBoxSelectedItem(selected ? selected.value : e.currentTarget.value);
-    }
-
     const handleCommentsChange = (e) => {
         setComments(e.currentTarget.value);
     }
 
-    const handleSend = (e) => {
-        e.preventDefault();
+    const handleSend = (values) => {
         const sentJson = {
             "name": nameField,
-            "email": emailField,
-            "phonenumber": phoneNumber,
-            "country_code": countryComboBoxSelectedItem,
+            "email": values.email,
+            "phonenumber": values.phoneNumber,
+            "country_code": values.countryComboBoxSelectedItem,
             "text": comments
         }
 
-        console.log(`Sent Object: ${JSON.stringify(sentJson)}`)
+        console.log(`Sent Object: ${JSON.stringify(sentJson)}`);
+        dispatch(openSnackbar({
+            messageType: MessageType.SUCCESS,
+            message: intl.formatMessage(
+                { ...messageFormatter("message.success") }
+            )
+        }));
     }
 
     useEffect(() => {
@@ -108,9 +118,10 @@ const ContactUs = () => {
             enableReinitialize={true}
             initialValues={initialValuesFormik}
             validationSchema={validationSchema}
+            onSubmit={(values) => handleSend(values)}
         >
-            {({ handleSubmit, handleBlur, values, errors, touched }) => (
-                <Form onSubmit={handleSend}>
+            {({ handleSubmit, handleBlur, setFieldValue, values, errors, touched }) => (
+                <Form>
                     <Grid
                         container
                         justify='center'
@@ -166,15 +177,16 @@ const ContactUs = () => {
                                 </Grid>
                                 <Grid item>
                                     <TextBoxFC
-                                        id='email-text'
+                                        id='email'
                                         name="email"
-                                        type='email'
                                         error={(touched.email && errors.email)
                                             ? true
                                             : false
                                         }
                                         value={values.email}
-                                        onChange={handleEmailChange}
+                                        onChange={e => {
+                                            setFieldValue('email', e.target.value)
+                                        }}
                                         onBlur={handleBlur}
                                     />
                                 </Grid>
@@ -207,7 +219,9 @@ const ContactUs = () => {
                                             : false
                                         }
                                         value={values.phoneNumber}
-                                        onChange={handlePhoneNumberChange}
+                                        onChange={e => {
+                                            setFieldValue('phoneNumber', e.target.value)
+                                        }}
                                         onBlur={handleBlur}
                                     />
                                 </Grid>
@@ -235,6 +249,10 @@ const ContactUs = () => {
                                     <AutoCompleteFC
                                         id="countryComboBoxSelectedItem"
                                         name="countryComboBoxSelectedItem"
+                                        error={(touched.countryComboBoxSelectedItem && errors.countryComboBoxSelectedItem)
+                                            ? true
+                                            : false
+                                        }
                                         renderOption={(option) => (
                                             <Box component="li" sx={{ '& > img': { marginRight: 5, flexShrink: 0 } }}>
                                                 <img
@@ -247,9 +265,13 @@ const ContactUs = () => {
                                                 {option.name} ({option.value})
                                             </Box>
                                         )}
-                                        onChange={handleCountryComboBoxChange}
+                                        onChange={(e, selected) => {
+                                            setFieldValue(
+                                                'countryComboBoxSelectedItem',
+                                                selected ? selected.value : e.currentTarget.value
+                                            );
+                                        }}
                                         onBlur={handleBlur}
-                                        // value={values.countryComboBoxSelectedItem}
                                         options={countryComboBoxOptions}
                                         fullWidth
                                     />
@@ -295,7 +317,7 @@ const ContactUs = () => {
                                 <Grid item>
                                     <ButtonFC
                                         type="submit"
-                                        onSubmit={handleSubmit}
+                                        onClick={handleSubmit}
                                         startIcon={<IconFC
                                             color={theme.palette.background.paper}
                                             icon={SendIcon}

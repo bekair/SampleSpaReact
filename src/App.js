@@ -1,8 +1,12 @@
 import LayoutFC from './components/LayoutFC';
+import SnackbarFC from './components/SnackbarFC';
 
 const App = () => {
 	return (
-		<LayoutFC />
+		<>
+			<SnackbarFC />
+			<LayoutFC />
+		</>
 	);
 }
 

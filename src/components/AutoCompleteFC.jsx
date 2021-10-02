@@ -1,6 +1,6 @@
 import * as React from 'react';
-import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import TextBoxFC from './TextBoxFC';
 
 const AutoCompleteFC = (props) => {
     const { ...other } = props;
@@ -13,8 +13,8 @@ const AutoCompleteFC = (props) => {
             getOptionLabel={(option) => option.name}
             renderOption={props.renderOption}
             renderInput={(params) => (
-                <TextField
-                    variant="outlined"
+                <TextBoxFC
+                    error={props.error}
                     onChange={props.onChange}
                     onBlur={props.onBlur}
                     inputProps={{
